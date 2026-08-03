@@ -158,3 +158,24 @@ Window:EditOpenButton({
     Enabled = true,
     Scale   = 0.6,
 })
+
+OverallTab:Button({
+    Title = "Anti AFK",
+
+    Callback = function()
+        local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local VirtualUser = game:GetService("VirtualUser")
+local currentCamra = game.workspace.CurrentCamera
+
+player.Idled:Connect(function ()
+    VirtualUser:Button2Down(Vector2.zero, currentCamra.CFrame)
+    task.wait(1)
+    VirtualUser:Button2Up(Vector2.zero, currentCamra.CFrame)
+    print("worked")
+end)
+
+print("script worked")
+    end,
+})
